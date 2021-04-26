@@ -25,7 +25,6 @@ defmodule PhoenixSplitRouteExampleWeb.Router do
     # preferable to use match because you have access to the prefix
     # https://elixirforum.com/t/umbrella-app-routing-with-plug-router-app-phoenix-app/10213/6
     # forward "/one", RouterOne
-    # forward "/two", RouterTwo
 
     get "/", PageController, :index
     match(:*, "/one/", RouterOne, :*)
