@@ -4,12 +4,6 @@ defmodule PhoenixSplitRouteExampleWeb.RouterOne do
   get "/one", PhoenixSplitRouteExampleWeb.ControllerOne, :index
 end
 
-defmodule PhoenixSplitRouteExampleWeb.RouterTwo do
-  use Phoenix.Router
-
-  get "/two", PhoenixSplitRouteExampleWeb.ControllerTwo, :index
-end
-
 defmodule PhoenixSplitRouteExampleWeb.Router do
   use PhoenixSplitRouteExampleWeb, :router
 
@@ -33,8 +27,8 @@ defmodule PhoenixSplitRouteExampleWeb.Router do
     # forward "/one", RouterOne
     # forward "/two", RouterTwo
 
+    get "/", PageController, :index
     match(:*, "/one/", RouterOne, :*)
-    match(:*, "/two/", RouterTwo, :*)
   end
 
   # Other scopes may use custom stacks.
