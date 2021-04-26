@@ -1,16 +1,14 @@
+defmodule PhoenixSplitRouteExampleWeb.RouterOne do
+  use Phoenix.Router
 
-  defmodule PhoenixSplitRouteExampleWeb.RouterOne do
-    use Phoenix.Router
+  get "/one", PhoenixSplitRouteExampleWeb.ControllerOne, :index
+end
 
-    get "/", PhoenixSplitRouteExampleWeb.ControllerOne, :index
-  end
+defmodule PhoenixSplitRouteExampleWeb.RouterTwo do
+  use Phoenix.Router
 
-  defmodule PhoenixSplitRouteExampleWeb.RouterTwo do
-    use Phoenix.Router
-
-    get "/", PhoenixSplitRouteExampleWeb.ControllerTwo, :index
-  end
-
+  get "/two", PhoenixSplitRouteExampleWeb.ControllerTwo, :index
+end
 
 defmodule PhoenixSplitRouteExampleWeb.Router do
   use PhoenixSplitRouteExampleWeb, :router
@@ -30,9 +28,13 @@ defmodule PhoenixSplitRouteExampleWeb.Router do
   scope "/", PhoenixSplitRouteExampleWeb do
     pipe_through :browser
 
-    forward "/one", RouterOne
-    forward "/two", RouterTwo
+    # preferable to use match because you have access to the prefix
+    # https://elixirforum.com/t/umbrella-app-routing-with-plug-router-app-phoenix-app/10213/6
+    # forward "/one", RouterOne
+    # forward "/two", RouterTwo
 
+    match(:*, "/one/", RouterOne, :*)
+    match(:*, "/two/", RouterTwo, :*)
   end
 
   # Other scopes may use custom stacks.
