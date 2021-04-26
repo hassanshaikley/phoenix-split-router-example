@@ -1,3 +1,17 @@
+
+  defmodule PhoenixSplitRouteExampleWeb.RouterOne do
+    use Phoenix.Router
+
+    get "/", PhoenixSplitRouteExampleWeb.ControllerOne, :index
+  end
+
+  defmodule PhoenixSplitRouteExampleWeb.RouterTwo do
+    use Phoenix.Router
+
+    get "/", PhoenixSplitRouteExampleWeb.ControllerTwo, :index
+  end
+
+
 defmodule PhoenixSplitRouteExampleWeb.Router do
   use PhoenixSplitRouteExampleWeb, :router
 
@@ -16,7 +30,9 @@ defmodule PhoenixSplitRouteExampleWeb.Router do
   scope "/", PhoenixSplitRouteExampleWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    forward "/one", RouterOne
+    forward "/two", RouterTwo
+
   end
 
   # Other scopes may use custom stacks.
