@@ -1,6 +1,7 @@
 defmodule PhoenixSplitRouteExampleWeb.RouterOne do
   use Phoenix.Router
 
+  # http://localhost:4000/one will take you here
   get "/one", PhoenixSplitRouteExampleWeb.ControllerOne, :index
 end
 
