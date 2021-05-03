@@ -29,7 +29,7 @@ defmodule PhoenixSplitRouteExampleWeb.Router do
     # forward "/one", RouterOne
 
     get "/", PageController, :index
-    match(:*, "/one/", RouterOne, :*)
+    match(:*, "/one/", RouterOne, [])
   end
 
   # Other scopes may use custom stacks.
