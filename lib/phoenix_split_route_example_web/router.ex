@@ -1,5 +1,6 @@
 defmodule PhoenixSplitRouteExampleWeb.RouterOne do
   use Phoenix.Router
+  # Note: If you switch from match to forward then you will have to change "/one" to "/" for the route to remain localhost:4000/one
 
   # http://localhost:4000/one will take you here
   get "/one", PhoenixSplitRouteExampleWeb.ControllerOne, :index
