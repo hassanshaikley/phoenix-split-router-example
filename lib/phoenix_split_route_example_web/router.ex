@@ -1,3 +1,11 @@
+defmodule PhoenixSplitRouteExampleWeb.RouterOne do
+  use Phoenix.Router
+  # Note: If you switch from match to forward then you will have to change "/one" to "/" for the route to remain localhost:4000/one
+
+  # http://localhost:4000/one will take you here
+  get "/one", PhoenixSplitRouteExampleWeb.ControllerOne, :index
+end
+
 defmodule PhoenixSplitRouteExampleWeb.Router do
   use PhoenixSplitRouteExampleWeb, :router
 
@@ -16,7 +24,12 @@ defmodule PhoenixSplitRouteExampleWeb.Router do
   scope "/", PhoenixSplitRouteExampleWeb do
     pipe_through :browser
 
+    # preferable to use match because you have access to the prefix
+    # https://elixirforum.com/t/umbrella-app-routing-with-plug-router-app-phoenix-app/10213/6
+    # forward "/one", RouterOne
+
     get "/", PageController, :index
+    match(:*, "/one/", RouterOne, [])
   end
 
   # Other scopes may use custom stacks.
